@@ -3,9 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HR", "HR", "{5A9722F9-FAB9-43C9-BF3B-27AC55D3E608}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HR.API", "HR\HR.API\HR.API.csproj", "{B7081777-6B85-4F89-AAA4-6D383861DACE}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7081777-6B85-4F89-AAA4-6D383861DACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7081777-6B85-4F89-AAA4-6D383861DACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7081777-6B85-4F89-AAA4-6D383861DACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7081777-6B85-4F89-AAA4-6D383861DACE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B7081777-6B85-4F89-AAA4-6D383861DACE} = {5A9722F9-FAB9-43C9-BF3B-27AC55D3E608}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {109761CC-EC63-40CA-8618-BE704C5D5F0A}
