@@ -1,12 +1,6 @@
-﻿namespace HR.API
-{
-    public static class ServiceExtensions
-    {
+﻿namespace HR.API;
 
-        public static void ConfigureMongo(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.Configure<MongoDBSettings>(configuration.GetSection("MongoDBSettings"));
-            
-        }
-    }
+public static class ServiceExtensions
+{
+    
 }
