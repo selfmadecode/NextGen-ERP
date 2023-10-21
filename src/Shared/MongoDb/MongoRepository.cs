@@ -1,7 +1,4 @@
-﻿using MongoDB.Driver;
-using Shared.Entities;
-using Shared.Interfaces;
-using SharpCompress.Common;
+﻿using Shared.Interfaces;
 using System.Linq.Expressions;
 
 namespace Shared.MongoDb;
