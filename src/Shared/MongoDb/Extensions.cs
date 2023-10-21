@@ -1,12 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using MongoDB.Bson.Serialization.Serializers;
+﻿using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson;
 using Shared.Interfaces;
 using Shared.Settings;
-using MongoDB.Driver;
-using Shared.Entities;
 
 namespace Shared.MongoDb;
 
