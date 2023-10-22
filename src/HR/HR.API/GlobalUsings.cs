@@ -1,5 +1,17 @@
-﻿global using System.Threading;
-global using HR.API.Services;
-global using HR.API;
+﻿global using HR.API;
 global using HR.API.Data;
+global using System.ComponentModel.DataAnnotations;
+global using HR.API.Domain;
+global using HR.API.DTO;
+global using Shared.Utilities;
+global using MongoDB.Bson;
+global using MongoDB.Bson.Serialization.Attributes;
+global using Shared.Entities;
+global using HR.API.Interfaces;
+global using HR.API.Repository;
+global using Shared.MongoDb;
+global using HR.API.DTOs;
+global using MongoDB.Driver;
+
+
 

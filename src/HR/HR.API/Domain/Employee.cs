@@ -1,5 +1,4 @@
-﻿using Shared.Entities;
-namespace HR.API.Domain;
+﻿namespace HR.API.Domain;
 
 public class Employee : EntityBase
 {
