@@ -1,5 +1,6 @@
 # NextGen ERP
-# HR Service Documentation
+
+# HR.API Service Documentation
 
 This documentation provides information on how to interact with the HR service and set up the necessary MongoDB database using Docker.
 The HR service relies on a MongoDB database for CRUD operations. Please follow the steps below to get started.
@@ -11,6 +12,16 @@ Before you can interact with the HR service, you will need to ensure that you ha
 1. **Docker Engine**: Docker is required to create and manage containers, including the MongoDB container for the HR service.
 
     Install Docker Engine by following the official Docker installation instructions: [Docker Installation Guide](https://docs.docker.com/get-docker/)
+
+## Pulling the MongoDB Docker Image
+
+Before setting up the HR service, you need to pull the official MongoDB Docker image from Docker Hub. Use the following command to pull the image:
+
+```bash
+docker pull mongo
+```
+
+This command will download the MongoDB image from Docker Hub and make it available for container creation.
 
 ## Setting up the MongoDB Database
 
