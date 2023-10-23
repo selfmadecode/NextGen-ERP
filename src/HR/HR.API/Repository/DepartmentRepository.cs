@@ -1,4 +1,6 @@
-﻿namespace HR.API.Repository;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace HR.API.Repository;
 
 public class DepartmentRepository : MongoRepository<Department>, IDepartmentRepository
 {
@@ -31,4 +33,18 @@ public class DepartmentRepository : MongoRepository<Department>, IDepartmentRepo
         return new BaseResponse<IEnumerable<GetDepartmentDTO>>(data);
     }
 
+    public async Task<bool> UpdateNoOfEmployeeAsync(Guid departmentId, int employeeCount)
+    {
+        var department = await GetAsync(departmentId);
+
+        if(department == null || employeeCount < 1)
+        {
+            return false;
+        }
+
+        department.NoOfEmployees += employeeCount;
+
+        await UpdateAsync(department);
+        return true;
+    }
 }
