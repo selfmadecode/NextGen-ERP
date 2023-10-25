@@ -1,4 +1,5 @@
-﻿using HR.API.DTOs.EmployeeDTOs;
+﻿using HR.API.Domain;
+using HR.API.DTOs.EmployeeDTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shared.AspNetCore;
@@ -44,6 +45,11 @@ namespace HR.API.Controllers
             return ReturnResponse(result);
         }
 
-        
+        [HttpPut("{employeeId}")]
+        public async Task<IActionResult> UpdateEmployee(Guid employeeId, [FromBody] UpdateEmployeeDTO model)
+        {
+            var result = await _employeeRepository.UpdateEmployee(employeeId, model);
+            return ReturnResponse(result);
+        }
     }
 }

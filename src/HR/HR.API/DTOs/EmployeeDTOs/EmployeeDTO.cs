@@ -26,4 +26,13 @@ public record GetEmployeeDTO(
     AddressDTO Address
     );
 
+public record UpdateEmployeeDTO(
+    string FirstName,
+    string LastName,
+    DateTime DateOfBirth,
+    string Contact,
+    string Email,
+    DateTime HiredDate,
+    AddressDTO Address
+    );
 
