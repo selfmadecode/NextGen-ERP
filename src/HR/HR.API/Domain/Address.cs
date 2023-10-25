@@ -2,9 +2,9 @@
 {
     public class Address
     {
-        public string HomeAddress { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
+        public required string HomeAddress { get; set; }
+        public required string City { get; set; }
+        public required string State { get; set; }
         public string Country { get; set; }
     }
 }

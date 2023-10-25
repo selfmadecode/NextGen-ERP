@@ -15,11 +15,10 @@ public class Employee : EntityBase, IEntity
     public DateTime DateOfBirth{ get; set; }
 
     [BsonElement("PhoneNumber")]
-    public string Contact { get; set; }
-
+    public required string Contact { get; set; }
 
     [BsonElement("Email")]
-    public string Email { get; set; }
+    public required string Email { get; set; }
 
     [BsonElement("JobTitle")]
     public required string JobTitle { get; set; }
@@ -29,6 +28,6 @@ public class Employee : EntityBase, IEntity
 
     public Guid DepartmentId { get; set; }
 
-    public Address Address { get; set; }
+    public required Address Address { get; set; }
     
 }
