@@ -46,21 +46,20 @@
                 return new BaseResponse<bool>($"Employee with Id {employeeId} does not exist");
             }
 
-            employeeData.FirstName = string.IsNullOrWhiteSpace(model.FirstName) ? employeeData.FirstName : model.FirstName;     
-            employeeData.LastName = string.IsNullOrWhiteSpace(model.LastName) ? employeeData.LastName : model.LastName; 
-            employeeData.Contact= string.IsNullOrWhiteSpace(model.Contact)? employeeData.Contact : model.Contact;
+            employeeData.FirstName =model.FirstName;     
+            employeeData.LastName = model.LastName; 
+            employeeData.Contact= model.Contact;
             employeeData.DateOfBirth = model.DateOfBirth ;
            
             if(model.Address != null)
             {
-                employeeData.Address.HomeAddress = string.IsNullOrWhiteSpace(model.Address.HomeAddress) ? employeeData.Address.HomeAddress : model.Address.HomeAddress;
-                employeeData.Address.City = string.IsNullOrWhiteSpace(model.Address.City) ? employeeData.Address.City : model.Address.City;
-                employeeData.Address.State = string.IsNullOrWhiteSpace(model.Address.State) ? employeeData.Address.State : model.Address.State;
-                employeeData.Address.Country = string.IsNullOrWhiteSpace(model.Address.Country) ? employeeData.Address.Country : model.Address.Country;
+                employeeData.Address.HomeAddress =  model.Address.HomeAddress;
+                employeeData.Address.City =  model.Address.City;
+                employeeData.Address.State =  model.Address.State;
+                employeeData.Address.Country = model.Address.Country;
             }
             
             await UpdateAsync(employeeData);
-
             
             return new BaseResponse<bool>(true);
         }

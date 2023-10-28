@@ -9,6 +9,7 @@ namespace HR.API.MappingProfile
         {
             // Source => Target
             CreateMap<CreateEmployeeDTO, Employee>();
+            CreateMap<GetEmployeeDTO, Employee>();
             CreateMap<AddressDTO, Address>();
         }
     }
