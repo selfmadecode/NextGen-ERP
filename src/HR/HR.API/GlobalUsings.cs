@@ -12,6 +12,8 @@ global using HR.API.Repository;
 global using Shared.MongoDb;
 global using HR.API.DTOs;
 global using MongoDB.Driver;
+global using AutoMapper;
+global using HR.API.DTOs.EmployeeDTOs;
 
 
 
