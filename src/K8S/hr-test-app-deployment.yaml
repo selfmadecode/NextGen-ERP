@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hr-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hrservice
+  template:
+    metadata:
+      labels:
+        app: hrservice
+    spec:
+      containers:
+        - name: hrservice
+          image: selfmadecode/hrservice:latest
+          ports:
+          - containerPort: 80
+          env:
+          - name: MONGODB_CONNECTION_STRING
+            value: "mongodb://mongodb-service:27017/NextGenHR"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hr-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: hrservice
+  ports:
+  - name: hrservice
+    protocol: TCP
+    port: 80
+    targetPort: 80 
+
+
