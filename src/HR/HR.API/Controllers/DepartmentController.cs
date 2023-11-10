@@ -29,17 +29,11 @@ namespace HR.API.Controllers
             return ReturnResponse(result);
         }
 
-        //[HttpGet("{id}", Name = "GetDepartment")]
-        //public async Task<IActionResult> Get(Guid id)
-        //{
-        //    var department = await _departmentRepository.GetAsync(id);
-
-        //    if (department == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(department);
-        //}
+        [HttpGet]
+        [Route("ping")]
+        public IActionResult Ping()
+        {
+            return Ok("--> Ping Ok");
+        }
     }
 }
