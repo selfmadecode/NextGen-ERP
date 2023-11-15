@@ -117,3 +117,59 @@ Ensure that you have the necessary configurations and dependencies in place for 
 
 -------------------------------------------------------------------------------------------------------------
 
+# Kubernetes Deployment Documentation for HR.API and MongoDB
+
+This documentation provides step-by-step instructions for deploying and interacting with the HR.API application and MongoDB in a Kubernetes cluster using the provided deployment and service files.
+
+## Prerequisites
+
+- A running Kubernetes cluster
+- `kubectl` command-line tool installed and configured to connect to your Kubernetes cluster
+
+## Step 1: Deploy MongoDB in Kubernetes
+
+Apply the MongoDB deployment and service files to deploy MongoDB in your Kubernetes cluster, ensure that you are in the K8S directory(`NextGen ERP\src\K8S`).
+
+```bash
+kubectl apply -f hr-mongodb-depl.yaml
+kubectl apply -f hr-mongodb-service.yaml
+```
+
+This will create a MongoDB Deployment and Service in your Kubernetes cluster.
+
+## Step 2: Deploy HR.API in Kubernetes
+
+Apply the HR.API deployment and service files to deploy the HR.API application in your Kubernetes cluster, ensure that you are in the K8S directory(`NextGen ERP\src\K8S`)..
+
+```bash
+kubectl apply -f hr-deployment.yaml
+kubectl apply -f hr-service.yaml
+```
+
+This will create a Deployment and Service for the HR.API application in your Kubernetes cluster.
+
+## Step 3: Verify Deployments
+
+Run the following commands to ensure that the Deployments and Services are running successfully:
+
+```bash
+kubectl get deployments
+kubectl get services
+```
+
+Verify that the Pods associated with the Deployments are in the `Running` state, and the Services have external IP addresses assigned.
+
+## Step 4: Access HR.API
+
+Once the HR.API application and service is deployed, you can access the HR.API application at `http://localhost:80`.
+
+## Step 5: Clean Up
+
+If needed, you can delete the deployed resources when you are done:
+
+```bash
+kubectl delete -f hr-deployment.yaml
+kubectl delete -f hr-service.yaml
+kubectl delete -f hr-mongodb-depl.yaml
+kubectl delete -f hr-mongodb-service.yaml
+```
