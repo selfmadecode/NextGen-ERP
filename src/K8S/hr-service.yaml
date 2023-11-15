@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hr-service
+spec:
+  type: LoadBalancer # review this can we use ngix or clusterIp
+  selector:
+    app: hrservice
+  ports:
+    - port: 80
+      targetPort: 80
+    # - protocol: TCP
+    #   port: 80
+    #   targetPort: 80
+
+# deploying this service file will enable external
+# request to reach the hrservice container
