@@ -27,13 +27,6 @@ namespace HR.API.Controllers
             var result = await _departmentRepository.GetAllDepartmentAsync();
 
             return ReturnResponse(result);
-        }
-
-        [HttpGet]
-        [Route("ping")]
-        public IActionResult Ping()
-        {
-            return Ok("--> Ping Ok");
-        }
+        }        
     }
 }
