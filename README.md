@@ -126,18 +126,7 @@ This documentation provides step-by-step instructions for deploying and interact
 - A running Kubernetes cluster
 - `kubectl` command-line tool installed and configured to connect to your Kubernetes cluster
 
-## Step 1: Deploy MongoDB in Kubernetes
-
-Apply the MongoDB deployment and service files to deploy MongoDB in your Kubernetes cluster, ensure that you are in the K8S directory(`NextGen ERP\src\K8S`).
-
-```bash
-kubectl apply -f hr-mongodb-depl.yaml
-kubectl apply -f hr-mongodb-service.yaml
-```
-
-This will create a MongoDB Deployment and Service in your Kubernetes cluster.
-
-## Step 2: Deploy HR.API in Kubernetes
+## Step 1: Deploy HR.API in Kubernetes
 
 Apply the HR.API deployment and service files to deploy the HR.API application in your Kubernetes cluster, ensure that you are in the K8S directory(`NextGen ERP\src\K8S`)..
 
@@ -147,6 +136,17 @@ kubectl apply -f hr-service.yaml
 ```
 
 This will create a Deployment and Service for the HR.API application in your Kubernetes cluster.
+
+## Step 2: Deploy MongoDB in Kubernetes
+
+Apply the MongoDB deployment and service files to deploy MongoDB in your Kubernetes cluster, ensure that you are in the K8S directory(`NextGen ERP\src\K8S`).
+
+```bash
+kubectl apply -f hr-mongodb-depl.yaml
+kubectl apply -f hr-mongodb-service.yaml
+```
+
+This will create a MongoDB Deployment and Service in your Kubernetes cluster.
 
 ## Step 3: Verify Deployments
 
