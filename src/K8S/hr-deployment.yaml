@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: hrservice
-          image: selfmadecode/hrservice:latest
+          image: nextgenerp/hrservice:latest
           resources:
             limits:
               memory: "128Mi"
