@@ -1,30 +1,32 @@
+# This Kubernetes StatefulSet file defines the configuration for deploying a MongoDB StatefulSet.
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mongodb-statefulset
+  name: mongodb-statefulset # Name of the StatefulSet resource
 spec:
-  serviceName: "mongodb-service"
-  replicas: 1
+  serviceName: "mongodb-service" # Service name associated with the StatefulSet
+  replicas: 1 # Number of desired replicas for the MongoDB StatefulSet
   selector:
     matchLabels:
-      app: mongodb
+      app: mongodb # Selector to match pods with the label 'app: mongodb'
   template:
     metadata:
       labels:
-        app: mongodb
+        app: mongodb # Labels for pods created by this StatefulSet
     spec:
       containers:
-        - name: mongodb
-          image: mongo:latest
+        - name: mongodb # Container name
+          image: mongo:latest # Docker image for the MongoDB container
           resources:
             limits:
-              memory: "128Mi"
-              cpu: "500m"
+              memory: "128Mi" # Memory limit for the container
+              cpu: "500m" # CPU limit for the container
           ports:
-            - containerPort: 27017
+            - containerPort: 27017 # Port on which the MongoDB container listens
           volumeMounts:
-            - mountPath: /data/db
+            - mountPath: /data/db # Mount path for MongoDB data
               name: data
+          # Uncomment and set environment variables for MongoDB authentication if needed
           # env:
           # - name: MONGO_INITDB_ROOT_USERNAME
           #   value: your-mongo-username
@@ -36,9 +38,9 @@ spec:
     - metadata:
         name: data
       spec:
-        accessModes: ["ReadWriteOnce"]
+        accessModes: ["ReadWriteOnce"] # Access mode for the persistent volume claim
         resources:
           requests:
-            storage: 1Gi # reduce this
+            storage: 1Gi # Requested storage size for each MongoDB replica (reduce if needed)
         
 
