@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hr-deployment # name of this deployment
+spec:
+  replicas: 1 # Number of desired replicas for the HR.API service
+  selector:
+    matchLabels:
+      app: hrservice # Selector to match pods with the label 'app: hrservice'
+  template:
+    metadata:
+      labels:
+        app: hrservice # Labels for pods created by this deployment
+    spec:
+      containers:
+        - name: hrservice # Container name
+          image: nextgenerp/hrservice:latest # Docker image for the HR.API service
+          resources:
+            limits:
+              memory: "128Mi" # Memory limit for the container
+              cpu: "500m" # CPU limit for the container
+          ports:
+          - containerPort: 80 # Port on which the container listens
+          env:
+          - name: MongoDBSettings__Host
+            # value: "mongodb://mongodb-service:27017/NextGenHR"
+            value: "mongodb-service"
+
+
+# The following section is commented out and represents a ClusterIP service definition.
+# It can be uncommented and applied separately if ClusterIP service is needed for
+# internal communication.
+
+# In Kubernetes, a ClusterIP service is a type of service that provides internal,
+# cluster-wide IP addresses to expose services within the Kubernetes cluster.
+# This type of service is not accessible from outside the
+# cluster and is primarily used for communication between different components within the cluster.
+
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: hr-clusterip-srv
+# spec:
+#   type: ClusterIP
+#   selector:
+#     app: hrservice
+#   ports:
+#   - name: hrservice
+#     protocol: TCP
+#     port: 80
+#     targetPort: 80 
+
+

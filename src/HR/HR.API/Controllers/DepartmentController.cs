@@ -27,19 +27,6 @@ namespace HR.API.Controllers
             var result = await _departmentRepository.GetAllDepartmentAsync();
 
             return ReturnResponse(result);
-        }
-
-        //[HttpGet("{id}", Name = "GetDepartment")]
-        //public async Task<IActionResult> Get(Guid id)
-        //{
-        //    var department = await _departmentRepository.GetAsync(id);
-
-        //    if (department == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(department);
-        //}
+        }        
     }
 }
