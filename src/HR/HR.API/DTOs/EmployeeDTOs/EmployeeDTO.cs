@@ -36,3 +36,17 @@ public record UpdateEmployeeDTO(
     [Required] AddressDTO Address
     );
 
+public record PublishEmployeeDTO(
+    Guid Id,
+    string FirstName,
+    string LastName,
+    DateTime DateOfBirth,
+    string Contact,
+    string Email,
+    string JobTitle,
+    DateTime HiredDate,
+    string Event
+
+
+    );
+
