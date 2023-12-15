@@ -1,18 +1,23 @@
-﻿namespace HR.API.Repository
+﻿using HR.API.AsyncDataServices;
+
+namespace HR.API.Repository
 {
     public class EmployeeRepository : MongoRepository<Employee>, IEmployeeRepository
     {
         private readonly IMapper _mapper;
+        private readonly IMessageBusClient _messageBusClient;
 
-        public EmployeeRepository(IMongoDatabase database, IMapper mapper, string collectionName = "employees") : base(database, collectionName)
+        public EmployeeRepository(IMongoDatabase database, IMapper mapper, IMessageBusClient messageBusClient, string collectionName = "employees") : base(database, collectionName)
         {
             _mapper = mapper;
+            _messageBusClient = messageBusClient;
         }
 
         public async Task<BaseResponse<GetEmployeeDTO>> OnboardEmployeeAsync(CreateEmployeeDTO employeeDto)
         {
             var employee = _mapper.Map<Employee>(employeeDto);
             await CreateAsync(employee);
+            publishEmployee(employeeDto);
             return new BaseResponse<GetEmployeeDTO>(employee.AsDto());
         }
 
@@ -62,6 +67,13 @@
             await UpdateAsync(employeeData);
             
             return new BaseResponse<bool>(true);
+        }
+
+        public void  publishEmployee(CreateEmployeeDTO employeeDto)
+        {
+            var publishedEmployee = _mapper.Map<PublishEmployeeDTO>(employeeDto);
+            publishedEmployee.Event = "Platform Published";
+            _messageBusClient.PublishNewEmployee(publishedEmployee);
         }
     }
 }

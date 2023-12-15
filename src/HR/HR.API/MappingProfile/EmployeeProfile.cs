@@ -11,7 +11,7 @@ namespace HR.API.MappingProfile
             CreateMap<CreateEmployeeDTO, Employee>();
             CreateMap<GetEmployeeDTO, Employee>();
             CreateMap<AddressDTO, Address>();
-            CreateMap<GetEmployeeDTO, PublishEmployeeDTO>();
+            CreateMap<CreateEmployeeDTO, PublishEmployeeDTO>();
         }
     }
 }
