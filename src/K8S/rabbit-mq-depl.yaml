@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-deployment # name of this deployment
+spec:
+  replicas: 1 # Number of desired replicas for the HR.API service
+  selector:
+    matchLabels:
+      app: rabbitmq # Selector to match pods with the label 'app: hrservice'
+  template:
+    metadata:
+      labels:
+        app: rabbitmq # Labels for pods created by this deployment  
+    spec:
+      containers:
+        - name: rabbitmq # Container name
+          image: rabbitmq:3.8-management-alpine # Docker image for the HR.API service
+          ports: 
+            - containerPort: 15672 #rabbitmq web interface
+              name: rbmq-mgmt-port
+            - containerPort: 5672 #rabbitmq instan
+              name: rbmq-msg-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq-clusterip-srv
+spec:
+  type: ClusterIP # review this can we use ngix or clusterIp
+  selector:
+    app: rabbitmq
+  ports:
+  - name: rbmq-mgmt-port
+    protocol: TCP
+    port: 15672 
+    targetPort: 15672
+  - name: rbmq-msg-port
+    protocol: TCP
+    port: 5672
+    targetPort: 5672
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq-loadbalancer
+spec:
+  type: LoadBalancer # review this can we use ngix or clusterIp
+  selector:
+    app: rabbitmq
+  ports:
+  - name: rbmq-mgmt-port
+    protocol: TCP
+    port: 15672
+    targetPort: 15672
+  - name: rbmq-msg-port
+    protocol: TCP
+    port: 5672
+    targetPort: 5672
