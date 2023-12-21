@@ -15,21 +15,7 @@ builder.Services.AddMongo(builder.Configuration);
 builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddMassTransit(busConfigurator =>
-{
-   // busConfigurator.SetKebabCaseEndpointNameFormatter();
-    busConfigurator.UsingRabbitMq((context, configurator) =>
-    {
-        configurator.Host(new Uri("rabbitmq://localhost"), h =>
-        {
-            h.Username("guest");
-            h.Password("guest");
-
-        });
-
-        configurator.ConfigureEndpoints(context);
-    });
-});
+builder.Services.ConfigureRabbitMq(builder.Configuration);
 
 
 var app = builder.Build();
