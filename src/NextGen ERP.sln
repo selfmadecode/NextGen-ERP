@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HR.API", "HR\HR.API\HR.API.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{E1C3EFED-BE4E-4122-9B0B-F43C75B4CB01}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SelfServicePortal", "SelfServicePortal", "{3D8BC400-BA1E-4B61-BBAD-2D5338B19A36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelfServicePortal.API", "SelfServicePortal.API\SelfServicePortal.API.csproj", "{55B5927F-FBEB-4746-88D8-92275FFD883D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +27,17 @@ Global
 		{E1C3EFED-BE4E-4122-9B0B-F43C75B4CB01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1C3EFED-BE4E-4122-9B0B-F43C75B4CB01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1C3EFED-BE4E-4122-9B0B-F43C75B4CB01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55B5927F-FBEB-4746-88D8-92275FFD883D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55B5927F-FBEB-4746-88D8-92275FFD883D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55B5927F-FBEB-4746-88D8-92275FFD883D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55B5927F-FBEB-4746-88D8-92275FFD883D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B7081777-6B85-4F89-AAA4-6D383861DACE} = {5A9722F9-FAB9-43C9-BF3B-27AC55D3E608}
+		{55B5927F-FBEB-4746-88D8-92275FFD883D} = {3D8BC400-BA1E-4B61-BBAD-2D5338B19A36}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {109761CC-EC63-40CA-8618-BE704C5D5F0A}
