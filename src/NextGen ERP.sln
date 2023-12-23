@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SelfServicePortal", "SelfServicePortal", "{3D8BC400-BA1E-4B61-BBAD-2D5338B19A36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelfServicePortal.API", "SelfServicePortal.API\SelfServicePortal.API.csproj", "{55B5927F-FBEB-4746-88D8-92275FFD883D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelfServicePortal.API", "SelfServicePortal.API\SelfServicePortal.API.csproj", "{55B5927F-FBEB-4746-88D8-92275FFD883D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
