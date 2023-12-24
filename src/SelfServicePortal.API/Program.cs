@@ -1,3 +1,7 @@
+using MassTransit;
+using SelfServicePortal.API;
+using SelfServicePortal.API.DTO;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.ConfigureRabbitMq(builder.Configuration);
 
 var app = builder.Build();
 
