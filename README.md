@@ -68,7 +68,7 @@ This documentation provides step-by-step instructions for setting up and interac
 
 ## Step 1: Create a Docker Network
 
-To enable communication between the HR.API and MongoDB containers, create a Docker network named `hrservicenetwork` using the following command:
+To enable communication between the HR.API and MongoDB container, create a Docker network named `hrservicenetwork` using the following command:
 
 ```bash
 docker network create hrservicenetwork
@@ -99,7 +99,7 @@ This command creates a MongoDB container named `mongo`, exposes port 27017, and 
 Build the HR.API Docker image using the provided Dockerfile. Make sure you are in the directory (`NextGen ERP\src`) and run the following command:
 
 ```bash
-docker build -f Dockerfile -t hrservice .
+docker build -f HR\HR.API\Dockerfile -t hrservice .
 ```
 
 ## Step 5: Run the HR.API Docker Container

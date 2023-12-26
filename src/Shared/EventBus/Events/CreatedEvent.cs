@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared
+namespace Shared.EventBus
 {
-   public record CreatedEvent
+    public record CreatedEvent
     {
         public Guid Id { get; set; }
         public DateTime CreatedOnUtc { get; set; }
