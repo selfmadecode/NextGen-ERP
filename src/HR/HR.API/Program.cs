@@ -1,5 +1,6 @@
 
 using MassTransit;
+using Shared.Caching;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMassTransitWithRabbitMq(builder.Configuration);
+builder.Services.AddRedis(builder.Configuration);
 
 
 var app = builder.Build();

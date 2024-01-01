@@ -1,20 +1,28 @@
-﻿namespace HR.API.Repository;
+﻿using Shared.Caching;
+
+namespace HR.API.Repository;
 
 public class EmployeeRepository : MongoRepository<Employee>, IEmployeeRepository
 {
     private readonly IMapper _mapper;
     private readonly IPublishEndpoint _publishEndpoint;
+    private readonly ICacheService _cacheService;
 
-    public EmployeeRepository(IMongoDatabase database, IMapper mapper,IPublishEndpoint publishEndpoint, string collectionName = "employees") : base(database, collectionName)
+    public EmployeeRepository(IMongoDatabase database, IMapper mapper,IPublishEndpoint publishEndpoint,ICacheService cacheService, string collectionName = "employees") : base(database, collectionName)
     {
         _mapper = mapper;
         _publishEndpoint = publishEndpoint;
+        _cacheService = cacheService;
     }
 
     public async Task<BaseResponse<GetEmployeeDTO>> OnboardEmployeeAsync(CreateEmployeeDTO employeeDto)
     {
         var employee = _mapper.Map<Employee>(employeeDto);
         await CreateAsync(employee);
+        // saving to cache should preceed saving to database
+        _cacheService.SetData<Employee>($"employees{employee.Id}",employee, _cacheService.SetCacheExpirationTime());
+
+
         await _publishEndpoint.Publish(new CreatedEvent
         {
             Id = employee.Id,
@@ -26,9 +34,22 @@ public class EmployeeRepository : MongoRepository<Employee>, IEmployeeRepository
 
     public async Task<BaseResponse<IEnumerable<GetEmployeeDTO>>> GetAllEmployees()
     {
-        var employeeList = (await GetAllAsync()).Select(x => x.AsDto());
+        var employeeList = new List<GetEmployeeDTO>();
+        var cacheData = _cacheService.GetData<IEnumerable<Employee>>("employees");
 
-        return new BaseResponse<IEnumerable<GetEmployeeDTO>>(employeeList);
+        if (cacheData != null && cacheData.Count() > 0)
+        {
+            employeeList = cacheData.Select(x => x.AsDto()).ToList();
+            return new BaseResponse<IEnumerable<GetEmployeeDTO>>(employeeList);
+        }
+        else
+        {
+           cacheData = await GetAllAsync();
+
+            var expiryTime = DateTimeOffset.Now.AddSeconds(30);
+            _cacheService.SetData<IEnumerable<Employee>>("employees",cacheData, _cacheService.SetCacheExpirationTime());
+            return new BaseResponse<IEnumerable<GetEmployeeDTO>>(cacheData.Select(x => x.AsDto()));
+        }
     }
 
     public async Task<BaseResponse<IEnumerable<GetEmployeeDTO>>> GetEmployeesByDepartment(Guid departmentId){
@@ -40,7 +61,7 @@ public class EmployeeRepository : MongoRepository<Employee>, IEmployeeRepository
     }
 
     public async Task<BaseResponse<GetEmployeeDTO>> GetEmployee(Guid employeeId)
-    {
+    {        
         var data = await GetAsync(x => x.Id == employeeId);
         return new BaseResponse<GetEmployeeDTO>(data.AsDto());
     }
