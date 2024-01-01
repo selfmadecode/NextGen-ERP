@@ -1,14 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Shared.Caching.Settings;
-using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-
-namespace Shared.Caching
+﻿namespace Shared.Caching
 {
     public class CacheService : ICacheService
     {

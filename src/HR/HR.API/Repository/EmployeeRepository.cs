@@ -1,6 +1,4 @@
-﻿using Shared.Caching;
-
-namespace HR.API.Repository;
+﻿namespace HR.API.Repository;
 
 public class EmployeeRepository : MongoRepository<Employee>, IEmployeeRepository
 {
