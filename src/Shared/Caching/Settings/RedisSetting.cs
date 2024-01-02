@@ -2,9 +2,9 @@
 {
     public class RedisSetting
     {
-        public string RedisCacheUrl { get; set; }
+        public string RedisCacheUrl { get; init; }
 
-        public int cacheExpirationTime { get; set; }
+        public int CacheExpirationTime { get; init; }
 
     }
 }

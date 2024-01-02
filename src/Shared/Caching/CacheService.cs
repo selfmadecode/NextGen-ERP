@@ -43,7 +43,7 @@
         
         public DateTimeOffset SetCacheExpirationTime()
         {
-            var expiration = _configuration.GetSection("RedisSetting").Get<RedisSetting>().cacheExpirationTime;
+            var expiration = _configuration.GetSection("RedisSetting").Get<RedisSetting>().CacheExpirationTime;
             var expiryTime = DateTimeOffset.Now.AddSeconds(expiration);
             return expiryTime;
         }
