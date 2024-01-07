@@ -16,5 +16,6 @@ global using MongoDB.Driver;
 global using AutoMapper;
 global using HR.API.DTOs.EmployeeDTOs;
 global using MassTransit;
+global using Shared.Caching;
 
 
