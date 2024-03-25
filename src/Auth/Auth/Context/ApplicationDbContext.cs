@@ -6,10 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Auth.Context;
 
-public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-{   
-    public ApplicationDbContext(DbContextOptions options): base(options) { }
-
+public class ApplicationDbContext(DbContextOptions options) 
+    : IdentityDbContext<ApplicationUser>(options)
+{
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 
