@@ -1,4 +1,7 @@
 ﻿using Auth.Context;
+using Auth.Models;
+using Auth.Ultilities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Auth.Helper.ServiceExtensions;
@@ -76,5 +79,26 @@ public static class ServiceCollectionExtension
             //// Register the ASP.NET Core host.
             options.UseAspNetCore();
         });
+    }
+
+    public static void AddCustomIdentity(this IServiceCollection services, IConfiguration configuration)
+    {
+        var identitysettings = new IdentitySettings();
+        configuration.Bind("IdentitySettings", identitysettings);
+
+        // register the Identity services.
+        services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+        {
+           options.Password.RequireNonAlphanumeric = true;
+           options.User.RequireUniqueEmail = true;
+           options.Lockout.AllowedForNewUsers = true;
+           options.Password.RequireDigit = false;
+           options.Password.RequireLowercase = true;
+           options.Password.RequireUppercase = true;
+           options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(identitysettings.LockoutMinutes);
+           options.Lockout.MaxFailedAccessAttempts = identitysettings.MaxLockoutAttempt;
+        })
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
     }
 }
