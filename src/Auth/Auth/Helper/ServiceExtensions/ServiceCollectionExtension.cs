@@ -33,8 +33,9 @@ public static class ServiceCollectionExtension
             options.AddEncryptionKey(new SymmetricSecurityKey(
                 Convert.FromBase64String("DRjd/GnduI3Efzen9V9BvbNUfc/VKgXltV7Kbk9sMkY=")));
 
-            // Register the signing credentials.
-            options.AddDevelopmentSigningCertificate();
+            //// Register the signing and encryption credentials.
+            options.AddDevelopmentEncryptionCertificate()
+                .AddDevelopmentSigningCertificate();
 
             //////////////////////////////////////
             //// Enable the token endpoint.
@@ -45,10 +46,6 @@ public static class ServiceCollectionExtension
 
             //// Accept anonymous clients (i.e clients that don't send a client_id).
             options.AcceptAnonymousClients();
-
-            //// Register the signing and encryption credentials.
-            //options.AddDevelopmentEncryptionCertificate()
-            //       .AddDevelopmentSigningCertificate();
 
             //// Register the ASP.NET Core host and configure the ASP.NET Core-specific options.
             options.UseAspNetCore()
