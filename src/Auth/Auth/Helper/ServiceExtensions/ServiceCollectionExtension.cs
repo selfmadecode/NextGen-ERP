@@ -2,6 +2,7 @@
 using Auth.Models;
 using Auth.Ultilities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Auth.Helper.ServiceExtensions;
@@ -100,5 +101,16 @@ public static class ServiceCollectionExtension
         })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
+    }
+
+    public static void AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<ApplicationDbContext>(options =>
+        {
+            options.UseSqlServer(
+                configuration.GetConnectionString("DefaultConnection"),
+                b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
+            options.UseOpenIddict();
+        });
     }
 }
