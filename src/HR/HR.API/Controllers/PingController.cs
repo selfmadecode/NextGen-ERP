@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HR.API.Controllers;
 
@@ -7,6 +8,7 @@ namespace HR.API.Controllers;
 public class PingController : ControllerBase
 {
     [HttpGet]
+    [Authorize]
     public IActionResult Ping()
     {
         return Ok("--> Ping Ok");
