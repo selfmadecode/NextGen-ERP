@@ -8,6 +8,8 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 using System.Security.Claims;
 using OpenIddict.Abstractions;
 using System.Collections.Immutable;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Auth.Controllers
 {
@@ -38,15 +40,6 @@ namespace Auth.Controllers
 
                 if (user == null)
                 {
-                    //var properties = new AuthenticationProperties(new Dictionary<string, string>
-                    //{
-                    //    [OpenIddictServerAspNetCoreConstants.Properties.Error] = Errors.InvalidGrant,
-                    //    [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] =
-                    //        "The username/password couple is invalid."
-                    //});
-
-                    //return Forbid(properties, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
-
                     return BadRequest(new Dictionary<string, string>
                     {
                         [OpenIddictServerAspNetCoreConstants.Properties.Error] = Errors.InvalidGrant,
