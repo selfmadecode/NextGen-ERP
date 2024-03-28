@@ -1,6 +1,9 @@
 using OpenIddict.Validation.AspNetCore;
 using Shared;
 
+using MassTransit;
+using Shared.Caching;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +19,7 @@ builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMassTransitWithRabbitMq(builder.Configuration);
+builder.Services.AddRedis(builder.Configuration);
 
 builder.Services.ConfigureOpenIdDictValidation(builder.Configuration);
 builder.Services.AddAuthentication();

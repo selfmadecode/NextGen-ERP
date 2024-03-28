@@ -1,4 +1,6 @@
 
+using Shared.Caching;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMassTransitWithRabbitMq(builder.Configuration);
+builder.Services.AddRedis(builder.Configuration);
 
 
 var app = builder.Build();

@@ -5,3 +5,7 @@ global using MongoDB.Driver;
 global using Shared.Entities;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
+global using Shared.EventBus;
+global using StackExchange.Redis;
+global using Shared.Caching.Settings;
+global using System.Text.Json;
