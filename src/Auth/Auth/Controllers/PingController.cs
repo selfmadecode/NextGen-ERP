@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HR.API.Controllers;
+namespace Auth.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
 public class PingController : ControllerBase
 {
     [HttpGet]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public IActionResult Ping()
     {
         return Ok("--> Ping Ok");

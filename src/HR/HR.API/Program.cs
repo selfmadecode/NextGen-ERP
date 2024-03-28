@@ -1,3 +1,5 @@
+using OpenIddict.Validation.AspNetCore;
+using Shared;
 
 using MassTransit;
 using Shared.Caching;
@@ -19,6 +21,10 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMassTransitWithRabbitMq(builder.Configuration);
 builder.Services.AddRedis(builder.Configuration);
 
+builder.Services.ConfigureOpenIdDictValidation(builder.Configuration);
+builder.Services.AddAuthentication();
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -29,8 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
