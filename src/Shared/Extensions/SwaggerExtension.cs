@@ -4,7 +4,7 @@ namespace Shared.Extensions;
 
 public static class SwaggerExtension
 {
-    public static void AddSwagger(this IServiceCollection services, string title)
+    public static void ConfigureSwagger(this IServiceCollection services, string title)
     {
         services.AddSwaggerGen(c =>
         {
