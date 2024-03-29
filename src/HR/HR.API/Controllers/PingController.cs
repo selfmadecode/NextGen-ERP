@@ -9,6 +9,7 @@ public class PingController : ControllerBase
 {
     [HttpGet]
     [Authorize]
+
     public IActionResult Ping()
     {
         return Ok("--> Ping Ok");
