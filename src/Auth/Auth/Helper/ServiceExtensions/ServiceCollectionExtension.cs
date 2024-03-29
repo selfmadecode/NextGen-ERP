@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using OpenIddict.Validation.AspNetCore;
 using Shared.Settings;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
@@ -33,15 +34,21 @@ public static class ServiceCollectionExtension
             //key that is shared between the server and the API project.
             options.AddEncryptionKey(new SymmetricSecurityKey(encryptionKey));
 
+
+
+            options.AddDevelopmentEncryptionCertificate() // Register the signing and encryption credentials.
+           .AddDevelopmentSigningCertificate();
+
             //// Enable the token endpoint.
-            options.SetTokenEndpointUris("connect/token")
-            .AllowPasswordFlow()//// Enable the password flow.
-            .AcceptAnonymousClients() // Accept anonymous clients (i.e clients that don't send a client_id)
-            .AddDevelopmentEncryptionCertificate() // Register the signing and encryption credentials.
-            .AddDevelopmentSigningCertificate()
-            .SetAccessTokenLifetime(TimeSpan.FromMinutes(60))
-            .SetIdentityTokenLifetime(TimeSpan.FromMinutes(60))
-            .SetRefreshTokenLifetime(TimeSpan.FromMinutes(120));
+            options.SetTokenEndpointUris("connect/token");
+
+            options.AllowPasswordFlow();//// Enable the password flow.
+            options.AcceptAnonymousClients(); // Accept anonymous clients (i.e clients that don't send a client_id)
+
+
+            //.SetAccessTokenLifetime(TimeSpan.FromMinutes(60))
+            //.SetIdentityTokenLifetime(TimeSpan.FromMinutes(60))
+            //.SetRefreshTokenLifetime(TimeSpan.FromMinutes(120));
 
             options.SetIssuer("https://localhost:7123/");
 
@@ -74,28 +81,14 @@ public static class ServiceCollectionExtension
 
             //// Import the configuration from the local OpenIddict server instance.
             options.UseLocalServer();
+
+            options.UseAspNetCore();
+
         });
 
         services.AddAuthentication(options =>
         {
-            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-        }).AddJwtBearer(o =>
-        {
-            o.RequireHttpsMetadata = true;
-            o.SaveToken = true;
-            o.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuer = true,
-                ValidIssuer = authSettings.Issuer,
-                ValidateIssuerSigningKey = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ClockSkew = TimeSpan.Zero,
-                RequireExpirationTime = true,
-                IssuerSigningKey = new SymmetricSecurityKey(encryptionKey)
-            };
+            options.DefaultAuthenticateScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
         });
     }
 
