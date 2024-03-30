@@ -1,14 +1,11 @@
 ﻿using Auth.Context;
 using Auth.Models;
 using Auth.Ultilities;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Validation.AspNetCore;
 using Shared.Settings;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 
 namespace Auth.Helper.ServiceExtensions;
 
@@ -33,9 +30,6 @@ public static class ServiceCollectionExtension
         {
             //key that is shared between the server and the API project.
             options.AddEncryptionKey(new SymmetricSecurityKey(encryptionKey));
-
-
-
             options.AddDevelopmentEncryptionCertificate() // Register the signing and encryption credentials.
            .AddDevelopmentSigningCertificate();
 
@@ -46,9 +40,9 @@ public static class ServiceCollectionExtension
             options.AcceptAnonymousClients(); // Accept anonymous clients (i.e clients that don't send a client_id)
 
 
-            //.SetAccessTokenLifetime(TimeSpan.FromMinutes(60))
-            //.SetIdentityTokenLifetime(TimeSpan.FromMinutes(60))
-            //.SetRefreshTokenLifetime(TimeSpan.FromMinutes(120));
+            options.SetAccessTokenLifetime(TimeSpan.FromMinutes(60))
+            .SetIdentityTokenLifetime(TimeSpan.FromMinutes(60))
+            .SetRefreshTokenLifetime(TimeSpan.FromMinutes(120));
 
             options.SetIssuer("https://localhost:7123/");
 
