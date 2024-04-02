@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.ConfigureSwagger("NextGen Auth API");
+builder.Services.ConfigureSwagger("NextGen Authentication API");
 
 builder.Services.AddCustomDbContext(builder.Configuration);
 builder.Services.ConfigureOpenIdDict(builder.Configuration);
