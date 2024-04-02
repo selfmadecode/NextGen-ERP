@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.ConfigureSwagger("NextGen HR API");
+builder.Services.ConfigureSwagger("NextGen HR Platform API");
 builder.Services.AddSwaggerGen();
 builder.Services.AddMongo(builder.Configuration);
 //builder.Services.AddMongoRepository<Department>("departments");
