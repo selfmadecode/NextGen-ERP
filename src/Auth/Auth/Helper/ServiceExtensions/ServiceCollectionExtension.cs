@@ -44,7 +44,7 @@ public static class ServiceCollectionExtension
             .SetIdentityTokenLifetime(TimeSpan.FromMinutes(60))
             .SetRefreshTokenLifetime(TimeSpan.FromMinutes(120));
 
-            options.SetIssuer("https://localhost:7123/");
+            options.SetIssuer(authSettings.Issuer);
 
             //ToDo: Generate and add certificate.pfx file
             //if (!string.IsNullOrEmpty(configuration["Identity:Certificates:EncryptionCertificatePath"]))
