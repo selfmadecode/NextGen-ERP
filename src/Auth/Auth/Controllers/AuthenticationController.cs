@@ -8,8 +8,6 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 using System.Security.Claims;
 using OpenIddict.Abstractions;
 using System.Collections.Immutable;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Auth.Controllers
 {

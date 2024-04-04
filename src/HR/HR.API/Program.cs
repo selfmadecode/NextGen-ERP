@@ -1,8 +1,6 @@
 using OpenIddict.Validation.AspNetCore;
 using Shared;
-
-using MassTransit;
-using Shared.Caching;
+using Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.ConfigureSwagger("NextGen HR Platform API");
 builder.Services.AddSwaggerGen();
 builder.Services.AddMongo(builder.Configuration);
 //builder.Services.AddMongoRepository<Department>("departments");
@@ -22,7 +21,8 @@ builder.Services.AddMassTransitWithRabbitMq(builder.Configuration);
 builder.Services.AddRedis(builder.Configuration);
 
 builder.Services.ConfigureOpenIdDictValidation(builder.Configuration);
-builder.Services.AddAuthentication();
+
+builder.Services.AddAuthentication(OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme);
 
 builder.Services.AddAuthorization();
 
