@@ -1,6 +1,6 @@
 ﻿namespace Shared.Common;
 
-public class EntityBase : IAuditable
+public class EntityBase : IAuditable, IHaveId
 {
     public Guid Id { get; set; }
 
