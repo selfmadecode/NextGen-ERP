@@ -15,6 +15,11 @@ public class EmployeeRepository : MongoRepository<Employee>, IEmployeeRepository
 
     public async Task<BaseResponse<GetEmployeeDTO>> OnboardEmployeeAsync(CreateEmployeeDTO employeeDto)
     {
+        // todo: create login email address (if name exits creat unique name)
+        // send welcome email
+        // change default password on inital login
+        // resend welcome email if failed
+        // assign tasks to complete
         var employee = _mapper.Map<Employee>(employeeDto);
         await CreateAsync(employee);
         // saving to cache should preceed saving to database
