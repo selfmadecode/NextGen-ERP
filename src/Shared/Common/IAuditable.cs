@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Shared.Common;
 
-public interface IAuditable : IEntity
+public interface IAuditable
 {
     /// <summary>
     /// DateTime of creation. This value will never change.
@@ -35,7 +35,7 @@ public interface IAuditable : IEntity
     public DateTime? DeletedOn { get; set; }
 }
 
-public interface IEntity
+public interface IHaveId
 {
     public Guid Id { get; set; }
 }
