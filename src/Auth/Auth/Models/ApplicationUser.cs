@@ -8,8 +8,8 @@ namespace Auth.Models
         public required string LastName { get; set; }
         public DateTime? LastLoginDate { get; set; }
 
-        //public required string CompanyId { get; set; }
+        public Guid? CompanyId { get; set; }
 
-        // Todo add date created and entitybase
+        public int MyProperty { get; set; }
     }
 }
