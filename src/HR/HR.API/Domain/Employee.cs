@@ -27,7 +27,8 @@ public class Employee : EntityBase, IEntity
     public DateTime HiredDate { get; set; }
 
     public Guid DepartmentId { get; set; }
-
+    public Guid CompanyId { get; set; }
+    public Guid TeamId { get; set; }
     public required Address Address { get; set; }
     
 }
