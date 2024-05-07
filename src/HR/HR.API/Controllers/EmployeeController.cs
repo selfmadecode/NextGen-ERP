@@ -15,34 +15,34 @@ public class EmployeeController : BaseController
     public async Task<IActionResult> Create([FromBody] CreateEmployeeDTO employee)
     {
         var result = await _employeeRepository.OnboardEmployeeAsync(employee);
-        return ReturnResponse(result);
+        return StatusCode(result.StatusCode, result);
     }
 
     [HttpGet]
     public async Task<IActionResult> GetAllEmployees()
     {
         var result = await _employeeRepository.GetAllEmployees();
-        return ReturnResponse(result);
+        return StatusCode(result.StatusCode, result);
     }
 
     [HttpGet("{employeeId}")]
     public async Task<IActionResult> GetEmployee(Guid employeeId)
     {
         var result = await _employeeRepository.GetEmployee(employeeId);
-        return ReturnResponse(result);
+        return StatusCode(result.StatusCode, result);
     }
 
     [HttpGet("{departmentId}")]
     public async Task<IActionResult> GetDepartmentEmployees(Guid departmentId)
     {
         var result = await _employeeRepository.GetEmployeesByDepartment(departmentId);
-        return ReturnResponse(result);
+        return StatusCode(result.StatusCode, result);
     }
 
     [HttpPut("{employeeId}")]
     public async Task<IActionResult> UpdateEmployee(Guid employeeId, [FromBody] UpdateEmployeeDTO model)
     {
         var result = await _employeeRepository.UpdateEmployee(employeeId, model);
-        return ReturnResponse(result);
+        return StatusCode(result.StatusCode, result);
     }
 }

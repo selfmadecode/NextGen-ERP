@@ -44,7 +44,7 @@ public class BaseController : ControllerBase
 
         BaseResponse<string> response = new()
         {
-            Status = RequestExecution.Error
+            StatusCode = (int)RequestExecution.Error
         };
 
 #if DEBUG

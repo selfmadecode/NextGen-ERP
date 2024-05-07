@@ -12,7 +12,7 @@ public class BaseResponse<T>
     public BaseResponse(T data, string responseMessage = null)
     {
         Data = data;
-        Status = StatusCodes.Status200OK;
+        StatusCode = StatusCodes.Status200OK;
         ResponseMessage = responseMessage;
 
     }
@@ -21,26 +21,26 @@ public class BaseResponse<T>
     {
         Data = data;
         TotalCount = totalCount;
-        Status = StatusCodes.Status200OK;
+        StatusCode = StatusCodes.Status200OK;
         ResponseMessage = responseMessage;
     }
 
     public BaseResponse(string error, List<string> errors = null)
     {
-        Status = StatusCodes.Status400BadRequest;
+        StatusCode = StatusCodes.Status400BadRequest;
         ResponseMessage = error;
         Errors = errors;
     }
 
     public BaseResponse(T data, string error, List<string> errors, RequestExecution status)
     {
-        Status = (int)status;
+        StatusCode = (int)status;
         ResponseMessage = error;
         Errors = errors;
         Data = data;
     }
 
-    public int Status { get; set; }
+    public int StatusCode { get; set; }
     public T Data { get; set; }
     public string ResponseMessage { get; set; }
     public int TotalCount { get; set; }
