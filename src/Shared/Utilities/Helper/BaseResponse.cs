@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System.Net;
 
 namespace Shared.Utilities;
 
@@ -11,9 +12,8 @@ public class BaseResponse<T>
     public BaseResponse(T data, string responseMessage = null)
     {
         Data = data;
-        Status = RequestExecution.Successful;
+        Status = StatusCodes.Status200OK;
         ResponseMessage = responseMessage;
-        StatusCode = StatusCodes.Status200OK;
 
     }
 
@@ -21,30 +21,28 @@ public class BaseResponse<T>
     {
         Data = data;
         TotalCount = totalCount;
-        Status = RequestExecution.Successful;
+        Status = StatusCodes.Status200OK;
         ResponseMessage = responseMessage;
-        StatusCode = StatusCodes.Status200OK;
     }
 
     public BaseResponse(string error, List<string> errors = null)
     {
-        Status = RequestExecution.Failed;
+        Status = StatusCodes.Status400BadRequest;
         ResponseMessage = error;
         Errors = errors;
     }
 
     public BaseResponse(T data, string error, List<string> errors, RequestExecution status)
     {
-        Status = status;
+        Status = (int)status;
         ResponseMessage = error;
         Errors = errors;
         Data = data;
     }
 
-    public RequestExecution Status { get; set; }
+    public int Status { get; set; }
     public T Data { get; set; }
     public string ResponseMessage { get; set; }
     public int TotalCount { get; set; }
-    public int StatusCode { get; set; }
     public List<string> Errors { get; set; } = new List<string>();
 }
