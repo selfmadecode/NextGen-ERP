@@ -17,5 +17,9 @@ global using AutoMapper;
 global using HR.API.DTOs.EmployeeDTOs;
 global using MassTransit;
 global using Shared.Caching;
+global using Microsoft.AspNetCore.Mvc;
+global using Shared.AspNetCore;
+global using Microsoft.AspNetCore.Authorization;
+
 
 
