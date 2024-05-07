@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 namespace Shared.AspNetCore;
 
+[Produces("application/json")]
 public class BaseController : ControllerBase
 {
     // to: do
