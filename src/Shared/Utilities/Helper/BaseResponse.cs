@@ -1,4 +1,6 @@
-﻿namespace Shared.Utilities;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Shared.Utilities;
 
 public class BaseResponse<T>
 {
@@ -11,6 +13,8 @@ public class BaseResponse<T>
         Data = data;
         Status = RequestExecution.Successful;
         ResponseMessage = responseMessage;
+        StatusCode = StatusCodes.Status200OK;
+
     }
 
     public BaseResponse(T data, int totalCount, string responseMessage = null)
@@ -19,6 +23,7 @@ public class BaseResponse<T>
         TotalCount = totalCount;
         Status = RequestExecution.Successful;
         ResponseMessage = responseMessage;
+        StatusCode = StatusCodes.Status200OK;
     }
 
     public BaseResponse(string error, List<string> errors = null)
@@ -40,5 +45,6 @@ public class BaseResponse<T>
     public T Data { get; set; }
     public string ResponseMessage { get; set; }
     public int TotalCount { get; set; }
+    public int StatusCode { get; set; }
     public List<string> Errors { get; set; } = new List<string>();
 }
