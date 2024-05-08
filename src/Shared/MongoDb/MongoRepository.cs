@@ -62,5 +62,10 @@ public class MongoRepository<T> : IRepository<T> where T : IEntity
         await _dbCollection.ReplaceOneAsync(filter, entity);
     }
 
+    public async Task UpdateOneAsync(FilterDefinition<T> filter,UpdateDefinition<T> update)
+    {
+        await _dbCollection.UpdateOneAsync(filter,update);
+    }
+
     // needs docker add in doc
 }

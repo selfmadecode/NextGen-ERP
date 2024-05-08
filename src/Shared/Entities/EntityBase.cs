@@ -1,6 +1,6 @@
 ﻿namespace Shared.Entities;
 
-public class EntityBase
+public class EntityBase// inherit from IEntity
 {
     public EntityBase()
     {

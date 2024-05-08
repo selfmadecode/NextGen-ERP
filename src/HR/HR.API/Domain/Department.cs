@@ -1,4 +1,6 @@
-﻿namespace HR.API.Domain;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HR.API.Domain;
 
 public class Department : EntityBase, IEntity
 {
@@ -16,4 +18,5 @@ public class Department : EntityBase, IEntity
 
     [BsonElement("Manager")]
     public required string Manager { get; set; }
+
 }

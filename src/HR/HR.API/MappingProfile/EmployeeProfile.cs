@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HR.API.DTOs.CompanyDTOs;
 using HR.API.DTOs.EmployeeDTOs;
 
 namespace HR.API.MappingProfile
@@ -11,6 +12,9 @@ namespace HR.API.MappingProfile
             CreateMap<CreateEmployeeDTO, Employee>();
             CreateMap<GetEmployeeDTO, Employee>();
             CreateMap<AddressDTO, Address>();
+            CreateMap<CreateCompanyDTO, Company>();
+            CreateMap<GetCompanyDTO, Company>();
+            CreateMap<CreateCompanyDocumentsDTO, CompanyDocument>();
         }
     }
 }

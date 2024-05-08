@@ -1,4 +1,5 @@
-﻿using HR.API.DTOs.EmployeeDTOs;
+﻿using HR.API.DTOs.CompanyDTOs;
+using HR.API.DTOs.EmployeeDTOs;
 
 namespace HR.API.DTOs;
 
@@ -18,5 +19,10 @@ public static class DTOFactory
     {
         return new AddressDTO(Address.HomeAddress,Address.City,Address.State, Address.Country);
     }
-
+    /*
+    public static GetCompanyDTO AsDto(this Company company)
+    {
+        return new GetCompanyDTO(company.Id, company.CompanyName, company.About, company.Mission, company.Vision);
+    }
+    */
 }
