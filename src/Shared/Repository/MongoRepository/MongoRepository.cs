@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Shared.MongoDb;
 
-public class MongoRepository<T> : IRepository<T> where T : IEntity
+public class MongoRepository<T> : IMongoRepository<T> where T : IEntity
 {
     private readonly IMongoCollection<T> _dbCollection;
     private readonly FilterDefinitionBuilder<T> _filterBuilder = Builders<T>.Filter;
