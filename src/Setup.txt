@@ -1,0 +1,25 @@
+Steps to install identity server
+navigate to the folder where you want to install the template
+install the duende templates using the following commands
+dotnet new -i Duende.IdentityServer.Templates
+
+select the inmemeory store option with the command below
+dotnet new isinmem
+that would create the in-memory project.
+
+For this, We started from scratch
+create an empty project -> dotnet new web
+from nugget, install the identity server package -> Duende.IdentityServer
+builder.add identity server
+
+to get the discovery document, /.well-known/openid-configuration
+
+identity server needs to know the resources it protects and the clients that should have access to the resources, and the level of access that they have 
+so define the resources we need to protects
+and authentication for users can be done with identity server
+
+// add the services we are trying to protect are the resources
+
+for the services to be able to validate the token, we need to add jwt bearer authentication, this way the client sends the token to the services,
+the service will have to validate the token, this is achieved with the help of jwt bearer authentication,
+with this package in place, the service connects and sends a copy of the token to identity server to validate 
