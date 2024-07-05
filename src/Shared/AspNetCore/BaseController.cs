@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 namespace Shared.AspNetCore;
 
+[Produces("application/json")]
 public class BaseController : ControllerBase
 {
     // to: do
@@ -43,7 +44,7 @@ public class BaseController : ControllerBase
 
         BaseResponse<string> response = new()
         {
-            Status = RequestExecution.Error
+            StatusCode = (int)RequestExecution.Error
         };
 
 #if DEBUG

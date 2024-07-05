@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace HR.API.Controllers;
+﻿namespace HR.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
