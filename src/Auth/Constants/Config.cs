@@ -114,14 +114,15 @@ public static class Config
 
             AllowedGrantTypes = GrantTypes.Code,
 
-            RedirectUris = {"https://localhost:5444/signin-oidc"},
-            FrontChannelLogoutUri = "https://localhost:5444/signout-oidc",
-            PostLogoutRedirectUris = {"https://localhost:5444/signout-callback-oidc"},
+            //RedirectUris = {"https://localhost:5150/signin-oidc"},
+            RedirectUris = {"https://oauth.pstmn.io/v1/callback"},
+            FrontChannelLogoutUri = "https://localhost:5150/signout-oidc",
+            PostLogoutRedirectUris = {"https://localhost:5150/signout-callback-oidc"},
 
             AllowOfflineAccess = true,
             AllowedScopes = {"openid", "profile", "hrapi.read"},
             RequirePkce = true,
-            RequireConsent = true,
+            //RequireConsent = true,
             AllowPlainTextPkce = false
         },
     };
