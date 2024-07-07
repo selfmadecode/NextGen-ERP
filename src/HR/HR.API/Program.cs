@@ -1,4 +1,4 @@
-using OpenIddict.Validation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Shared;
 using Shared.Extensions;
 
@@ -20,9 +20,16 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMassTransitWithRabbitMq(builder.Configuration);
 builder.Services.AddRedis(builder.Configuration);
 
-builder.Services.ConfigureOpenIdDictValidation(builder.Configuration);
+//builder.Services.ConfigureOpenIdDictValidation(builder.Configuration);
 
-builder.Services.AddAuthentication(OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme);
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) // this is the way this service communicates with auth
+    .AddJwtBearer(options =>
+    {
+        // the way to connect to auth
+        options.Authority = "https://localhost:7200"; // the endpoint for identity server, Todo get this from app settings
+        options.Audience = "hrapi";
+        options.TokenValidationParameters.ValidTypes = ["at+jwt"]; // the token types
+    });
 
 builder.Services.AddAuthorization();
 
