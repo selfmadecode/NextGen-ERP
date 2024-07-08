@@ -12,22 +12,22 @@ namespace Shared
 
             var encryptionKey = Convert.FromBase64String(authSettings.SecretKey);
 
-            services.AddOpenIddict()
-            .AddValidation(options =>
-            {
-                // Note: the validation handler uses OpenID Connect discovery
-                // to retrieve the issuer signing keys used to validate tokens.
-                options.SetIssuer(authSettings.Issuer);
+            //services.AddOpenIddict()
+            //.AddValidation(options =>
+            //{
+            //    // Note: the validation handler uses OpenID Connect discovery
+            //    // to retrieve the issuer signing keys used to validate tokens.
+            //    options.SetIssuer(authSettings.Issuer);
 
-                //key that is shared between the server and the API project.
-                options.AddEncryptionKey(new SymmetricSecurityKey(encryptionKey));
+            //    //key that is shared between the server and the API project.
+            //    options.AddEncryptionKey(new SymmetricSecurityKey(encryptionKey));
 
-                // Register the System.Net.Http integration.
-                options.UseSystemNetHttp();
+            //    // Register the System.Net.Http integration.
+            //    options.UseSystemNetHttp();
 
-                // Register the ASP.NET Core host.
-                options.UseAspNetCore();
-            });
+            //    // Register the ASP.NET Core host.
+            //    options.UseAspNetCore();
+            //});
         }
     }
 }

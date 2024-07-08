@@ -7,7 +7,7 @@
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AspNet.Security.OpenIdConnect.Primitives" Version="2.0.0" />
+    <!--<PackageReference Include="AspNet.Security.OpenIdConnect.Primitives" Version="2.0.0" />-->
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.2" />
     <PackageReference Include="MongoDB.Driver" Version="2.22.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
