@@ -23,3 +23,36 @@ and authentication for users can be done with identity server
 for the services to be able to validate the token, we need to add jwt bearer authentication, this way the client sends the token to the services,
 the service will have to validate the token, this is achieved with the help of jwt bearer authentication,
 with this package in place, the service connects and sends a copy of the token to identity server to validate 
+install  - Microsoft.AspNetCore.Authentication.JwtBearer
+
+add UI
+dotnet new -i Duende.IdentityServer.Templates
+ dotnet new isui
+
+ instead of in-memory data
+ we can use ef stores and asp.net identity
+
+ for identity server we need to configure two seperate stores
+ we need the ConfigurationStore and operational store
+
+ migration 
+ for inital migration, we need to generate migration for the configuration store and operational store 
+ dotnet ef migrations add initialIdentityServerMigration -c ConfigurationDbContext // add-migration initialIdentityServerMigration -c ConfigurationDbContext
+ dotnet ef migrations add initialIdentityServerMigration -c PersistedGrantDbContext // add-migration initialIdentityServerMigration -c PersistedGrantDbContext
+
+ then update the database - order deosnt matter
+ dotnet ef database update -c PersistedGrantDbContext // update-database -context PersistedGrantDbContext
+ dotnet ef database update -c ConfigurationDbContext // update-database -context ConfigurationDbContext
+
+ to run the seed method, we need to pass "seed" as an argument to the commandline so that it just seeds the
+ database without starting the app
+  dotnet run bin/Debug/net8.0/auth /seed
+
+  to run migration for identity,
+  dotnet ef migrations add initialIdentityServerMigration -c ApplicationDbContext // add-migration initialIdentityMigration -c ApplicationDbContext
+  dotnet ef database update -c ApplicationDbContext // update-database -context ApplicationDbContext
+
+
+  Kevin Jones
+  https://github.com/kevinrjones/SettingUpIdentityServer/tree/master
+  https://www.youtube.com/watch?v=DUujxWdnl3M&list=PLz9t0GSOz9eCDgLnh7Q3rhA29F3tSekPM&index=2
