@@ -80,6 +80,7 @@ public static class Config
         new ApiScope("hrapi.read"),
         new ApiScope("hrapi.write"),
     };
+
     // the services we are tryinf to protect are the resources, with two scopes (hrapi.read and hrapi.write)
     public static IEnumerable<ApiResource> ApiResources => new[]
     {

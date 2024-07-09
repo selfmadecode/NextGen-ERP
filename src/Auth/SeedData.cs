@@ -1,13 +1,4 @@
-﻿using auth.Constants;
-using Duende.IdentityServer.EntityFramework.DbContexts;
-using Duende.IdentityServer.EntityFramework.Mappers;
-using IdentityModel;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Serilog;
-using System.Security.Claims;
-
-namespace auth;
+﻿namespace auth;
 
 public class SeedData
 {
