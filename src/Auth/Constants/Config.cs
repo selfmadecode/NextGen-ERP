@@ -1,11 +1,4 @@
-﻿using Duende.IdentityServer.Models;
-using Duende.IdentityServer.Test;
-using Duende.IdentityServer;
-using IdentityModel;
-using System.Security.Claims;
-using System.Text.Json;
-
-namespace auth.Constants;
+﻿namespace auth.Constants;
 
 public static class Config
 {
